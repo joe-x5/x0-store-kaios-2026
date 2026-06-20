@@ -1,0 +1,209 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: white;
+        }
+
+
+                 .container {
+            border-radius: 0px;
+            margin: 2px;
+            padding: 0px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #liveTime {
+            font-size: 8px;
+            font-weight: bold;
+            color: #007aff;
+            margin-bottom: 10px;
+        }
+
+        #userIP {
+            font-size: 8px;
+            font-weight: bold;
+            color: #333;
+            text-align: center; 
+            overflow: auto;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+
+.h1header {
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+
+        h1 {
+    flex: 1; /* Each button takes equal space */
+    color: black;
+    font-size: 14px; /* Consistent font size */
+    text-align: center; /* Center text in the button */
+    padding: 2px; /* Padding for a button-like appearance */
+    margin-bottom: 5px; /* Minimal margin between buttons */
+    background: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+z-index: 2;
+        }
+
+        .version-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            padding: 0px;
+            margin: 2px;
+            background: white;
+            border-radius: 12px;
+            border: 0px solid black;
+        }
+
+                .version-buttons button {
+            width: 100%;
+            padding:  1px 0px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            background: white;
+            color: black;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .version-buttons button:hover,
+        .version-buttons button:focus {
+            background: #4A208C;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            color: white;
+             border-radius: 1px;
+             padding: 2px;
+            outline: none;
+        }
+         
+
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .confirm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirm-modal .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .confirm-modal button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007aff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .confirm-modal button:hover {
+            background-color: #4A208C;
+        }
+
+
+footer.softkey {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    font-weight: bold;
+    background-color: none; /* Footer background */
+}
+
+#softKeysContainer {
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Space out buttons evenly */
+    width: 100%; /* Ensure it uses the full width */
+}
+
+.softkey-button {
+    flex: 1; /* Each button takes equal space */
+    color: black;
+    font-size: 14px; /* Consistent font size */
+    text-align: center; /* Center text in the button */
+    padding: 2px; /* Padding for a button-like appearance */
+    margin: 5px; /* Minimal margin between buttons */
+    background: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+
+#softkey-left {
+    border-radius: 20px; /* Rounded left corners */
+}
+
+#softkey-center {
+    border-radius: 20px; /* No rounding */
+}
+
+#softkey-right {
+    border-radius: 20px; /* Rounded right corners */
+}
+
+.softkey-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Change background on hover */
+
+  box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional: Focus outline for accessibility */
+.softkey-button:focus {
+    border: 2px solid red;
+    outline-offset: 2px;
+}
+
+img {
+      width: 45px;
+      height: 45px;
+      border-radius: 8px;
+      margin: 2px;
+box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.3);
+ margin-right: 12px; 
+object-fit: contain;
+}
