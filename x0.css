@@ -1,0 +1,163 @@
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-containerserif;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+
+                 .container {
+            width: 100%; 
+            background-color: #fff;
+            border-radius: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        #liveTime {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007aff;
+            margin-bottom: 10px;
+        }
+
+        #userIP {
+
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .version-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            padding: 0px;
+            margin: 2px;
+            background: white;
+            border-radius: 12px;
+            border: 0px solid black;
+        }
+
+                .version-buttons button {
+            width: 100%;
+            padding:  0px 0px;
+            font-size: 14px;
+            font-weight: bold;
+margin-bottom: 3px;
+            background: white;
+            color: black;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+                .version-buttons button:hover,
+        .version-buttons button:focus {
+            background: skyblue;
+            border: 2px solid red;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+         
+
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .confirm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirm-modal .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .confirm-modal button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007aff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .confirm-modal button:hover {
+            background-color: #0051a8;
+        }
+
+
+footer.softkey,
+#softkey-left,
+#softkey-center,
+#softkey-right {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+#softkey-left {
+    text-align: left;
+    font-size: 14px;
+    color: #fffdfd;
+    padding-left: 0.5rem;
+}
+
+#softkey-center {
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#softkey-right {
+    text-align: right;
+    font-size: 14px;
+    padding-right: 5px;
+    color: #ffffff;
+}
+
+#softKeysContainer {
+    height: 1.0rem;
+    line-height: 1.0rem;
+    width: 100%;
+    background-color: rgb(8, 8, 8);
+    position: fixed;
+    bottom: 0;
+}
