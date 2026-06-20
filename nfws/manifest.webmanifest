@@ -1,0 +1,66 @@
+{"name":"PornHUB",
+"id":"PornHUB",
+"description":"PornHUB P2P Messenger is a decentralized messaging application that facilitates direct communication between users without relying on central servers. The app supports the exchange of text messages, audio messages, and location sharing, making it a versatile tool for staying connected. By using peer-to-peer (P2P) technology, PornHUB ensures that messages are transmitted directly between users, offering a seamless and reliable communication experience.",
+"lang":"en-US",
+"start_url":"/",
+"short_name":"PornHUB",
+"categories":["social","utilities"],
+"theme_color":"#ffffff",
+"orientation":"natural",
+"display":"standalone",
+"userAgentInfo":"PornHUB written by strukturart@gmail.com",
+"icons":[{"src":"icon.png",
+"type":"image/png",
+"sizes":"56x56"},
+{"src":"icon.png",
+"type":"image/png",
+"sizes":"112x112"},
+{"src":"icon.png",
+"type":"image/x-icon","sizes":"16x16 32x32"},
+{"src":"icon.png",
+"type":"image/png","sizes":"192x192"},
+{"src":"icon.png",
+"type":"image/png",
+"sizes":"512x512"},
+{"src":"icon.png",
+"type":"image/png",
+"sizes":"192x192",
+"purpose":"maskable"},
+{"src":"icon.png",
+"type":"image/png",
+"sizes":"512x512",
+"purpose":"maskable"}],
+
+"b2g_features":{"version":"0.3396","id":"PornHUB",
+"subtitle":"PornHUB WebRTC chat app",
+"core":true,
+"type":"privileged",
+"display":"fullscreen",
+
+"developer":{"name":"PornHUB",
+"url":"https://x0.rf.gd/a/x0-all/nfws/"},
+
+"dependencies":{"ads-sdk":"1.5.8"},
+"messages":[{"serviceworker-notification":"/"},
+
+{"activity":"/"}],
+
+"activities":{"PornHUB":{}},
+"serviceworker":{"script_url":"sw.js"},
+"permissions":{"desktop-notification":{"description":"Needed to fire system notifications"},"mobiledata":{},"wifidata":{},"calllog":{},
+
+"device-storage:sdcard":{"description":"Read/Write from/to sd-card","access":"readwrite"},
+
+"video-capture":{"description":"Reading Codes using the Camera"},
+
+"audio-channel-content":{"description":"Play audio"},
+"audio-capture":{"description":"Record audio"},
+
+"device-storage:pictures":{"description":"Read/Write pictures","access":["read","write","create"]},
+
+"spatialnavigation-app-manage":{"navigator.spatialNavigationEnabled":false},
+"systemXHR":{"description":"Required to load remote content"},
+"feature-detection":{"description":"query which keys are available"}
+}
+}
+}
