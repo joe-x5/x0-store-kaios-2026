@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X0 All KaiOS</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Social Hub</h1>
+        <div class="version-buttons" id="app-buttons">
+            <!-- Buttons will be dynamically added here -->
+        </div>
+        <button onclick="openVersion('submit_app.php')">
+            <img src="https://cdn-icons-png.flaticon.com/512/9297/9297482.png" alt="Submit App" style="width: 24px; height: 24px; margin-right: 12px; object-fit: contain;"/> Submit Your App
+        </button>
+    </div>
+
+    <script>
+        // Function to load apps from JSON file
+        function loadApps() {
+            fetch('social/apps.json')
+                .then(response => response.json())
+                .then(apps => {
+                    const appButtonsDiv = document.getElementById('app-buttons');
+                    apps.forEach(app => {
+                        const button = document.createElement('button');
+                        button.onclick = () => window.open(app.url, '_blank');
+                        button.innerHTML = `<img src="social/host/${app.icon}" alt="${app.name}" style="width: 24px; height: 24px; margin-right: 12px; object-fit: contain;"/> ${app.name}`;
+                        appButtonsDiv.appendChild(button);
+                    });
+                })
+                .catch(error => console.error('Error loading apps:', error));
+        }
+
+        // Load apps on page load
+        window.onload = loadApps;
+
+        function openVersion(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
