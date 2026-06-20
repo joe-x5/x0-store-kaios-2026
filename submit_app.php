@@ -1,0 +1,262 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get form data
+    $appName = trim($_POST['app_name']);
+    $webAppUrl = trim($_POST['webapp_url']);
+    $category = trim($_POST['category']);
+    $iconSource = $_POST['icon_source'];
+    $iconUrl = trim($_POST['icon_url']);
+    $icon = $_FILES['app_icon'];
+
+    // Validate app name
+    if (strlen($appName) > 20) {
+        die("<script>alert('Error: App name must be 20 characters or less.');</script>");
+    }
+
+    // Validate URL
+    if (!filter_var($webAppUrl, FILTER_VALIDATE_URL)) {
+        die("<script>alert('Error: Invalid URL.');</script>");
+    }
+
+    // Create the directory if it doesn't exist
+    $uploadDir = __DIR__ . "/$category/host/";
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+
+    // Handle file upload or use URL
+    if ($iconSource === 'upload' && $icon['error'] === UPLOAD_ERR_OK) {
+        $iconName = strtolower(str_replace(' ', '-', $appName)) . '-' . date('YmdHis') . '.png';
+        $uploadFile = $uploadDir . $iconName;
+
+        if (move_uploaded_file($icon['tmp_name'], $uploadFile)) {
+            $iconPath = "host/$iconName";
+        } else {
+            die("<script>alert('Error: Failed to upload icon.');</script>");
+        }
+    } elseif ($iconSource === 'url' && filter_var($iconUrl, FILTER_VALIDATE_URL)) {
+        $iconPath = $iconUrl;
+    } elseif ($iconSource === 'automatic') {
+        // Generate an automatic icon using Icons8 API
+        $iconPath = "https://image.pollinations.ai/prompt/" . urlencode($appName) . ".png?width=48&height=48";
+    } else {
+        die("<script>alert('Error: Invalid icon URL.');</script>");
+    }
+
+    // Prepare the new app data
+    $newApp = [
+        "name" => $appName,
+        "url" => $webAppUrl,
+        "icon" => $iconPath
+    ];
+
+    // Load existing apps from JSON
+    $appsFile = __DIR__ . "/$category/apps.json";
+    if (file_exists($appsFile)) {
+        $appsData = json_decode(file_get_contents($appsFile), true);
+    } else {
+        $appsData = [];
+    }
+
+    // Append the new app to the existing data
+    $appsData[] = $newApp;
+
+    // Save the updated apps data back to the JSON file
+    if (file_put_contents($appsFile, json_encode($appsData, JSON_PRETTY_PRINT))) {
+        echo "<script>alert('App submitted successfully!');</script>";
+    } else {
+        die("<script>alert('Error: Failed to save app data.');</script>");
+    }
+}
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X0 Store - Submit App</title>
+
+ <meta property="og:image" content="https://x0.rf.gd/a/ai-image-genrator/gen.php?prompt=X0-Store-Submit-App&width=600&height=300" />
+
+  <link rel="icon" href="https://x0.rf.gd/a/ai-image-genrator/gen.php?prompt=X0-Store-Submit-App&width=128&height=128" />
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="url"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        input[type="submit"] {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover {
+            background: #45a049;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        .icon-options {
+            margin: 10px 0;
+        }
+        .icon-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .icon-option img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        .footer-alert {
+            margin-top: 20px;
+            text-align: center;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+h1 img{
+height: 48px;
+width: 48px;
+border-radius: 10px;
+border: 2px solid red;
+}
+    </style>
+</head>
+<body>
+    <h1><img src="icon.png"/>Submitting Portal</h1>
+     <p> Developer Portal App Submission Portal</p>
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for="app_name">App Name (max 20 characters):</label>
+        <input type="text" id="app_name" name="app_name" placeholder="App Name" required maxlength="20"><br>
+
+        <label for="webapp_url">Web App URL:</label>
+        <input type="url" id="webapp_url" name="webapp_url" placeholder="Hosted App URL" required><br>
+
+        <div class="icon-options">
+            <label>Icon Options:</label>
+            <div class="icon-option">
+                <input type="radio" id="upload-icon" name="icon_source" value="upload" checked> 
+                <img src="https://img.icons8.com/ios-filled/128/4CAF50/upload.png" alt="Upload Icon">
+                <label for="upload-icon">Upload Icon ☑️</label>
+            </div>
+            <div class="icon-option">
+                <input type="radio" id="url-icon" name="icon_source" value="url">
+                <img src="https://img.icons8.com/ios-filled/128/4CAF50/link.png" alt="URL Icon">
+                <label for="url-icon">Use URL ✅</label>
+            </div>
+            <div class="icon-option">
+                <input type="radio" id="automatic-icon" name="icon_source" value="automatic">
+                <img src="https://img.icons8.com/ios-filled/128/4CAF50/automatic.png" alt="Automatic Icon">
+                <label for="automatic-icon">Automatic Icon ✅</label>
+            </div>
+        </div>
+
+        <div id="upload-section">
+            <label for="app_icon">Upload App Icon (PNG):</label>
+            <input type="file" id="app_icon" name="app_icon" accept="image/*"><br>
+        </div>
+        <div id="url-section" style="display:none;">
+            <label for="icon_url">Icon URL:</label>
+            <input type="url" id="icon_url" name="icon_url" placeholder="Icon URL"><br>
+        </div>
+
+        <label for="category">Select App Category:</label>
+        <select id="category" name="category" required>
+            <option value="education">Education</option>
+           <option value="social">Social</option>
+            <option value="games">Games</option>
+            
+            <option value="ai">AI</option>
+            <option value="utility">Utility</option>
+<option value="multimedia">Multimedia</option>
+
+            <option value="tools">Tools</option>
+            <option value="nfws">18+</option>
+            <option value="hacks">Hacks</option>
+             <option value="new-apps">New Apps</option>
+             <option value="home-links">Home Links</option>
+
+        </select>
+
+<br>
+
+        <input type="submit" value="Submit App">
+    </form>
+
+    <div class="footer-alert">
+        <p>✔ Thanks for submitting your app! You can check the status in your dashboard.</p>
+<h1>2ND Way For Submitting App On KaiOS Store </h1>
+<h2> Email: KaiOS@yopmail.com</h2>
+<h2> Password : kaitest0</h2>
+<p> login with this email and update your phone IMEI number in app </p>
+<p> <a href="https://developer.kaiostech.com/devlogin/">KaiOS Developer Portal</a> update IMEI here </p>
+    </div>
+
+    <script>
+        document.querySelectorAll('input[name="icon_source"]').forEach(el => {
+            el.addEventListener('change', () => {
+                document.getElementById('upload-section').style.display = 
+                    document.getElementById('upload-icon').checked ? 'block' : 'none';
+                document.getElementById('url-section').style.display = 
+                    document.getElementById('url-icon').checked ? 'block' : 'none';
+            });
+        });
+    </script>
+
+
+
+<?php
+include 'github-fetch.php?no';
+?>
+
+
+
+</body>
+</html>
